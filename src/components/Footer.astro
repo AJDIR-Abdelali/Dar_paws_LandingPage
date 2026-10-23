@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import PlayBadge from './PlayBadge.astro';
+import { API_URL, SUPPORT_EMAIL, t, base, type Lang } from '../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const s = t(lang);
+const home = base(lang) || '/';
+---
+<footer class="footer">
+  <div class="container grid">
+    <div class="about">
+      <a class="brand" href={home}><Image src={logo} alt="" width={32} height={32} /><span>DarPaws</span></a>
+      <p>{s.footer.tagline}</p>
+      <PlayBadge lang={lang} size="sm" />
+    </div>
+    <div>
+      <h4>{s.footer.product}</h4>
+      <a href={`${home}#features`}>{s.nav.features}</a>
+      <a href={`${home}#how`}>{s.nav.how}</a>
+      <a href={`${home}#caretakers`}>{s.nav.caretakers}</a>
+      <a href={`${base(lang)}/blog`}>{s.nav.blog}</a>
+    </div>
+    <div>
+      <h4>{s.footer.legal}</h4>
+      <a href={`${API_URL}/privacy`}>{s.footer.privacy}</a>
+      <a href={`${API_URL}/delete-account`}>{s.footer.deleteAccount}</a>
+      <a href={`mailto:${SUPPORT_EMAIL}`}>{s.footer.contact}</a>
+    </div>
+  </div>
+  <div class="container bottom">© {new Date().getFullYear()} DarPaws. {s.footer.rights}</div>
+</footer>
+
+<style>
+  .footer { border-top: 1px solid var(--line); padding-block: 64px 32px; }
+  .grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 19px; }
+  .brand :global(img) { border-radius: 9px; }
+  .about p { color: var(--ink-2); margin: 14px 0 20px; max-width: 28ch; }
+  h4 { margin: 0 0 14px; font-size: 14px; color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+  :lang(ar) h4 { text-transform: none; letter-spacing: 0; }
+  .grid a:not(.brand):not(.play) { display: block; color: var(--ink-2); font-weight: 600; font-size: 15px; padding-block: 5px; }
+  .grid a:not(.brand):hover { color: var(--ink); }
+  .bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+  @media (max-width: 700px) { .grid { grid-template-columns: 1fr 1fr; } .about { grid-column: 1 / -1; } }
+</style>

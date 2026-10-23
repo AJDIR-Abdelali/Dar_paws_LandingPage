@@ -1,0 +1,31 @@
+---
+import { PLAY_URL, t, type Lang } from '../i18n/ui';
+interface Props { lang: Lang; size?: 'md' | 'sm' }
+const { lang, size = 'md' } = Astro.props;
+const s = t(lang);
+---
+<a class:list={['play', size]} href={PLAY_URL} target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+    <path fill="#00D7FE" d="M3.6 1.8 13.5 12l-9.9 10.2c-.4-.2-.6-.7-.6-1.2V3c0-.5.2-1 .6-1.2z"/>
+    <path fill="#FFCE00" d="m16.8 8.7-3.3 3.3 3.3 3.3 3.8-2.1c1.1-.6 1.1-1.6 0-2.2z"/>
+    <path fill="#FF3A44" d="M16.8 15.3 13.5 12 3.6 22.2c.4.2.9.2 1.4-.1z"/>
+    <path fill="#00F076" d="M3.6 1.8c.5-.3 1-.3 1.4-.1l11.8 7L13.5 12z"/>
+  </svg>
+  <span><small>{s.play.small}</small><b>{s.play.big}</b></span>
+</a>
+
+<style>
+  .play {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: #111; color: #fff;
+    height: 56px; padding-inline: 18px 22px; border-radius: 14px;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .play:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -8px rgba(0,0,0,.35); }
+  .play span { display: flex; flex-direction: column; line-height: 1.1; }
+  .play small { font-size: 11px; opacity: .8; font-weight: 500; }
+  .play b { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+  .sm { height: 46px; padding-inline: 14px 18px; border-radius: 12px; }
+  .sm b { font-size: 17px; }
+  .sm svg { width: 22px; height: 22px; }
+</style>

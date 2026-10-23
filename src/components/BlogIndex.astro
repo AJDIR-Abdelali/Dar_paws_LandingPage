@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import PostCard from './PostCard.astro';
+import { getPosts } from '../lib/blog';
+import { t, type Lang } from '../i18n/ui';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const s = t(lang);
+const posts = await getPosts(lang);
+---
+<Base lang={lang} title={`${s.blog.pageTitle} — DarPaws`} description={s.blog.pageText}>
+  <section class="section top">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">{s.blog.eyebrow}</span>
+        <h1 class="h2">{s.blog.pageTitle}</h1>
+        <p class="lead">{s.blog.pageText}</p>
+      </div>
+      {posts.length === 0 && <p class="lead">{s.blog.empty}</p>}
+      <div class="posts">
+        {posts.map((p, i) => <div data-reveal data-delay={String((i % 3) + 1)}><PostCard post={p} lang={lang} /></div>)}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .top { padding-top: clamp(40px, 6vw, 72px); }
+  .posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  @media (max-width: 960px) { .posts { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .posts { grid-template-columns: 1fr; } }
+</style>

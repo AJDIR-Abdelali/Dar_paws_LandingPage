@@ -1,0 +1,67 @@
+---
+import '@fontsource-variable/plus-jakarta-sans';
+import '@fontsource/ibm-plex-sans-arabic/400.css';
+import '@fontsource/ibm-plex-sans-arabic/500.css';
+import '@fontsource/ibm-plex-sans-arabic/700.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { t, LANGS, stripLang, localizedPath, type Lang } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+}
+const { lang, ogImage = '/og-image.jpg', ogType = 'website' } = Astro.props;
+const s = t(lang);
+const title = Astro.props.title ?? s.meta.title;
+const description = Astro.props.description ?? s.meta.description;
+// Static hosting serves every page as a folder (/blog/), so canonical URLs end with a slash.
+const slash = (p: string) => (p.endsWith('/') ? p : `${p}/`);
+const canonical = new URL(slash(Astro.url.pathname), Astro.site);
+const bare = stripLang(Astro.url.pathname);
+const alternates = LANGS.map((l) => ({ lang: l, href: new URL(slash(localizedPath(l, bare)), Astro.site) }));
+const ogLocale = { fr: 'fr_MA', en: 'en_US', ar: 'ar_MA' }[lang];
+---
+<!doctype html>
+<html lang={lang} dir={s.dir}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+    <link rel="alternate" hreflang="x-default" href={alternates[0].href} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:locale" content={ogLocale} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <Header lang={lang} barePath={bare} />
+    <main><slot /></main>
+    <Footer lang={lang} />
+    <script>
+      // Fade sections in as they scroll into view; mark the header once scrolled.
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+        }
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+      document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+      const onScroll = () => document.documentElement.classList.toggle('scrolled', window.scrollY > 8);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    </script>
+  </body>
+</html>

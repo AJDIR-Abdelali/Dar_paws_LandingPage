@@ -1,0 +1,9 @@
+---
+import Base from '../../layouts/Base.astro';
+import Landing from '../../components/Landing.astro';
+import { getPosts } from '../../lib/blog';
+const posts = await getPosts('en');
+---
+<Base lang="en">
+  <Landing lang="en" posts={posts} />
+</Base>

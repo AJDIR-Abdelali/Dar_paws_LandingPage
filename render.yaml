@@ -1,0 +1,18 @@
+# Render Blueprint — free static site (does not use instance hours).
+services:
+  - type: web
+    name: darpaws-website
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Public URL used for canonical links + sitemap. Update it after the first deploy
+      # (or when you add a custom domain like https://darpaws.ma).
+      - key: SITE_URL
+        value: https://darpaws-website.onrender.com
+    headers:
+      - path: /_astro/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable

@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { t, base, type Lang } from '../i18n/ui';
+import { postSlug, formatDate } from '../lib/blog';
+interface Props { post: CollectionEntry<'blog'>; lang: Lang }
+const { post, lang } = Astro.props;
+const s = t(lang);
+---
+<a class="card" href={`${base(lang)}/blog/${postSlug(post)}`}>
+  <div class="art" aria-hidden="true"><span>{post.data.emoji}</span></div>
+  <div class="body">
+    <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date, lang)}</time>
+    <h3>{post.data.title}</h3>
+    <p>{post.data.description}</p>
+    <span class="more">{s.blog.read} <span aria-hidden="true">{lang === 'ar' ? '←' : '→'}</span></span>
+  </div>
+</a>
+
+<style>
+  .card { display: flex; flex-direction: column; height: 100%; background: #fff; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); transition: transform .2s ease, box-shadow .2s ease; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -16px rgba(21,22,31,.2); }
+  .art { aspect-ratio: 16 / 9; display: grid; place-items: center; background: linear-gradient(135deg, #FFE7E2, #FFF4DE); font-size: 56px; }
+  .body { padding: 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  time { color: var(--muted); font-size: 14px; font-weight: 600; }
+  h3 { font-size: 21px; letter-spacing: -0.02em; line-height: 1.25; }
+  p { color: var(--ink-2); font-size: 15px; flex: 1; }
+  .more { color: var(--coral); font-weight: 700; font-size: 15px; margin-top: 8px; }
+</style>

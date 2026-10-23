@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import PlayBadge from './PlayBadge.astro';
+import { render, type CollectionEntry } from 'astro:content';
+import { formatDate } from '../lib/blog';
+import { t, base, type Lang } from '../i18n/ui';
+interface Props { lang: Lang; post: CollectionEntry<'blog'> }
+const { lang, post } = Astro.props;
+const s = t(lang);
+const { Content } = await render(post);
+---
+<Base lang={lang} title={`${post.data.title} — DarPaws`} description={post.data.description} ogType="article">
+  <article class="article">
+    <div class="container narrow">
+      <a class="back" href={`${base(lang)}/blog`}>
+        <span aria-hidden="true">{lang === 'ar' ? '→' : '←'}</span> {s.blog.back}
+      </a>
+      <header class="head">
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date, lang)}</time>
+        <h1>{post.data.title}</h1>
+        <p class="lead">{post.data.description}</p>
+      </header>
+      <div class="cover" aria-hidden="true">{post.data.emoji}</div>
+      <div class="prose"><Content /></div>
+      <aside class="cta">
+        <div>
+          <h2>{s.final.title}</h2>
+          <p>{s.final.text}</p>
+        </div>
+        <PlayBadge lang={lang} />
+      </aside>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .article { padding-block: clamp(32px, 6vw, 64px) clamp(64px, 9vw, 112px); }
+  .narrow { max-width: 760px; }
+  .back { display: inline-flex; gap: 8px; color: var(--ink-2); font-weight: 600; font-size: 15px; }
+  .back:hover { color: var(--ink); }
+  .head { margin-top: 32px; }
+  time { color: var(--muted); font-weight: 600; font-size: 15px; }
+  h1 { font-size: clamp(34px, 5vw, 54px); margin-top: 12px; }
+  .cover { margin: 40px 0; aspect-ratio: 21 / 9; border-radius: var(--radius-lg); display: grid; place-items: center; font-size: clamp(64px, 10vw, 112px); background: linear-gradient(135deg, #FFE7E2, #FFF4DE); }
+
+  .prose { font-size: 18px; line-height: 1.75; color: var(--ink); }
+  .prose :global(h2) { font-size: clamp(24px, 3vw, 30px); margin: 2em 0 .6em; letter-spacing: -0.02em; }
+  .prose :global(h3) { font-size: 21px; margin: 1.6em 0 .5em; }
+  .prose :global(p) { margin: 0 0 1.1em; color: var(--ink-2); }
+  .prose :global(strong) { color: var(--ink); }
+  .prose :global(ul), .prose :global(ol) { padding-inline-start: 1.3em; margin: 0 0 1.2em; color: var(--ink-2); }
+  .prose :global(li) { margin-bottom: .5em; }
+  .prose :global(li::marker) { color: var(--coral); }
+  .prose :global(a) { color: var(--coral); text-decoration: underline; text-underline-offset: 3px; }
+  .prose :global(blockquote) { margin: 1.6em 0; padding: 18px 22px; background: var(--coral-50); border-radius: var(--radius); }
+  .prose :global(blockquote p) { margin: 0; color: var(--ink); }
+  .prose :global(hr) { border: 0; border-top: 1px solid var(--line); margin: 2.4em 0; }
+
+  .cta { margin-top: 56px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; background: var(--bg-soft); border-radius: var(--radius-lg); padding: 32px; }
+  .cta h2 { font-size: 24px; letter-spacing: -0.02em; }
+  .cta p { color: var(--ink-2); margin-top: 6px; }
+  @media (max-width: 600px) { .cta { flex-direction: column; text-align: center; } }
+</style>

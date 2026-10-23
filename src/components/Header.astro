@@ -1,0 +1,70 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import { PLAY_URL, t, base, LANGS, LANG_LABELS, localizedPath, type Lang } from '../i18n/ui';
+interface Props { lang: Lang; barePath: string }
+const { lang, barePath } = Astro.props;
+const s = t(lang);
+const home = base(lang) || '/';
+---
+<header class="header">
+  <div class="container row">
+    <a class="brand" href={home} aria-label="DarPaws">
+      <Image src={logo} alt="" width={36} height={36} />
+      <span>DarPaws</span>
+    </a>
+    <nav class="nav" aria-label="Menu">
+      <a href={`${home}#features`}>{s.nav.features}</a>
+      <a href={`${home}#how`}>{s.nav.how}</a>
+      <a href={`${home}#caretakers`}>{s.nav.caretakers}</a>
+      <a href={`${base(lang)}/blog`}>{s.nav.blog}</a>
+      <a href={`${home}#faq`}>{s.nav.faq}</a>
+    </nav>
+    <div class="actions">
+      <nav class="langs" aria-label="Language">
+        {LANGS.map((l) => (
+          <a
+            href={localizedPath(l, barePath)}
+            hreflang={l}
+            lang={l}
+            aria-current={l === lang ? 'true' : undefined}
+            class:list={{ active: l === lang }}
+          >{LANG_LABELS[l]}</a>
+        ))}
+      </nav>
+      <a class="btn btn-primary btn-sm" href={PLAY_URL} target="_blank" rel="noopener">{s.download}</a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255, 255, 255, .82);
+    backdrop-filter: saturate(180%) blur(16px);
+    -webkit-backdrop-filter: saturate(180%) blur(16px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s ease;
+  }
+  :global(.scrolled) .header { border-bottom-color: var(--line); }
+  .row { display: flex; align-items: center; gap: 28px; height: 68px; }
+  .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; }
+  .brand :global(img) { border-radius: 10px; }
+  .nav { display: flex; gap: 26px; margin-inline-start: 8px; }
+  .nav a { font-size: 15px; font-weight: 600; color: var(--ink-2); transition: color .15s ease; }
+  .nav a:hover { color: var(--ink); }
+  .actions { display: flex; align-items: center; gap: 16px; margin-inline-start: auto; }
+  .langs { display: flex; gap: 2px; padding: 3px; border-radius: 999px; background: var(--bg-soft); }
+  .langs a { font-size: 13px; font-weight: 700; color: var(--ink-2); padding: 6px 10px; border-radius: 999px; line-height: 1; }
+  .langs a:hover { color: var(--ink); }
+  .langs a.active { background: #fff; color: var(--ink); box-shadow: var(--shadow-sm); }
+  .langs a:lang(ar) { font-family: 'IBM Plex Sans Arabic', sans-serif; }
+  @media (max-width: 480px) {
+    .row { gap: 12px; }
+    .brand span { display: none; } /* icon only — leaves room for the language switch */
+    .actions { gap: 8px; }
+    .actions .btn { padding-inline: 14px; }
+    .langs a { padding: 6px 8px; }
+  }
+  @media (max-width: 920px) { .nav { display: none; } }
+</style>
