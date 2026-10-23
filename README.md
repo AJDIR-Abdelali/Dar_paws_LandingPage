@@ -25,10 +25,11 @@ npm run build      # static files in dist/
 - **Blog articles**: Markdown files in `src/content/blog/<fr|en|ar>/` — see `src/content/blog/README.md`
 - **App screenshots**: `src/assets/screens/` (optimized automatically at build time)
 
-## Deploy (Render Static Site)
+## Deploy (Vercel)
 
-- Build command: `npm ci && npm run build`
-- Publish directory: `dist`
-- Environment variable `SITE_URL` = the site's public URL (used for canonical links and the sitemap)
+Live at **https://darpaws.vercel.app** — Vercel builds every push to `main` automatically
+(framework preset: Astro, output: `dist`).
 
-Every push to `main` redeploys the site.
+If you add a custom domain, set the environment variable `SITE_URL` (e.g. `https://darpaws.ma`)
+in Vercel → Project → Settings → Environment Variables, then redeploy, so canonical links,
+link previews and the sitemap use the new address.

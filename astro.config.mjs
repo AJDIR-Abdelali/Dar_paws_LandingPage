@@ -2,9 +2,9 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// Public URL of the site (Render gives one like https://<name>.onrender.com).
-// Set SITE_URL in Render once you know it, or when you add a custom domain.
-const site = process.env.SITE_URL || 'https://darpaws-website.onrender.com';
+// Public URL of the site (Vercel). Used for canonical links, Open Graph images and
+// the sitemap. Set SITE_URL in Vercel if you add a custom domain (e.g. https://darpaws.ma).
+const site = process.env.SITE_URL || 'https://darpaws.vercel.app';
 
 export default defineConfig({
   site,
