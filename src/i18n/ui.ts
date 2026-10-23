@@ -80,11 +80,11 @@ const fr = {
     eyebrow: 'FAQ',
     title: 'Questions fréquentes',
     items: [
-      { q: 'DarPaws est-il gratuit ?', a: 'Oui. L’application est gratuite et sans publicité. Les pet‑sitters fixent leur tarif horaire, que vous voyez avant de réserver.' },
-      { q: 'Dans quelles villes ?', a: 'Nous commençons à Casablanca. Les pet‑sitters d’autres villes peuvent déjà créer leur profil.' },
-      { q: 'Comment choisir un pet‑sitter ?', a: 'Regardez son profil, ses services, son tarif, la distance et les avis d’autres propriétaires. Vous pouvez aussi lui écrire un message avec votre demande.' },
-      { q: 'Et sur iPhone ?', a: 'DarPaws est disponible sur Android. La version iPhone est prévue.' },
-      { q: 'Comment supprimer mon compte ?', a: 'Dans l’appli : Profil → Supprimer le compte, ou depuis notre page web dédiée. Toutes vos données sont effacées.' },
+      { q: 'DarPaws est-il gratuit ?', a: 'Oui. L’application est gratuite et sans publicité. Les pet‑sitters fixent leur tarif horaire, que vous voyez avant de réserver.' },
+      { q: 'Dans quelles villes ?', a: 'Nous commençons à Casablanca. Les pet‑sitters d’autres villes peuvent déjà créer leur profil.' },
+      { q: 'Comment choisir un pet‑sitter ?', a: 'Regardez son profil, ses services, son tarif, la distance et les avis d’autres propriétaires. Vous pouvez aussi lui écrire un message avec votre demande.' },
+      { q: 'Et sur iPhone ?', a: 'DarPaws est disponible sur Android. La version iPhone est prévue.' },
+      { q: 'Comment supprimer mon compte ?', a: 'Dans l’appli : Profil → Supprimer le compte, ou depuis notre page web dédiée. Toutes vos données sont effacées.' },
     ],
   },
   blog: {
@@ -98,7 +98,7 @@ const fr = {
     pageText: 'Conseils pratiques pour prendre soin de vos animaux au Maroc.',
   },
   final: {
-    title: 'Prêt à faire plaisir à votre compagnon ?',
+    title: 'Prêt à faire plaisir à votre compagnon ?',
     text: 'Téléchargez DarPaws gratuitement et trouvez un pet‑sitter près de chez vous.',
   },
   footer: {

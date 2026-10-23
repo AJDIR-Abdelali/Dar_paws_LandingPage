@@ -259,7 +259,7 @@ const check = `<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true
   .req:nth-child(2) { margin-inline-start: 36px; }
   .req-avatar { flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--coral-50); color: var(--coral); font-weight: 800; }
   .req.accepted .req-avatar { background: #E6F6F4; color: var(--teal); }
-  .req-body { display: flex; flex-direction: column; line-height: 1.35; min-width: 0; }
+  .req-body { flex: 1 1 auto; display: flex; flex-direction: column; line-height: 1.35; min-width: 0; text-align: start; }
   .req-body b { font-size: 16px; }
   .req-body span { font-size: 14px; color: var(--ink-2); }
   .req-body small { font-size: 13px; color: var(--muted); }
@@ -316,8 +316,14 @@ const check = `<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true
     .float-icon { width: 32px; height: 32px; font-size: 16px; border-radius: 10px; }
     .float-a { top: 8%; inset-inline-start: 0; }
     .float-b { bottom: 8%; inset-inline-end: 0; }
-    .feature-visual { padding-block: 32px; }
-    .feature-visual :global(.phone) { max-width: 230px; }
+    .feature { padding-block: 24px; gap: 24px; }
+    .feature-visual { padding-block: 24px; border-radius: var(--radius); }
+    .feature-visual :global(.phone) { max-width: 190px; border-radius: 32px; padding: 7px; }
+    .feature-visual :global(.phone img) { border-radius: 26px; }
+    /* Phone: avatar | details, with the status pill on its own line under the name */
+    .req { display: grid; grid-template-columns: auto 1fr; align-items: start; padding: 14px; gap: 4px 12px; }
+    .req-avatar { width: 38px; height: 38px; grid-row: span 2; }
+    .req-status { grid-column: 2; justify-self: start; margin-inline-start: 0; font-size: 11px; padding: 4px 8px; }
     .hero-cta .btn { width: 100%; max-width: 320px; }
   }
 </style>
