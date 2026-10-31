@@ -55,6 +55,11 @@ const { Content } = await render(post);
   .prose :global(blockquote) { margin: 1.6em 0; padding: 18px 22px; background: var(--coral-50); border-radius: var(--radius); }
   .prose :global(blockquote p) { margin: 0; color: var(--ink); }
   .prose :global(hr) { border: 0; border-top: 1px solid var(--line); margin: 2.4em 0; }
+  /* price / schedule tables: scroll sideways on phones instead of overflowing */
+  .prose :global(table) { display: block; overflow-x: auto; width: 100%; border-collapse: collapse; margin: 0 0 1.4em; font-size: 16px; }
+  .prose :global(th), .prose :global(td) { padding: 10px 14px; border-bottom: 1px solid var(--line); text-align: start; vertical-align: top; }
+  .prose :global(th) { background: var(--bg-soft); color: var(--ink); font-weight: 700; white-space: nowrap; }
+  .prose :global(td) { color: var(--ink-2); }
 
   .cta { margin-top: 56px; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; background: var(--bg-soft); border-radius: var(--radius-lg); padding: 32px; }
   .cta h2 { font-size: 24px; letter-spacing: -0.02em; }
