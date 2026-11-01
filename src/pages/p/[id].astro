@@ -1,0 +1,14 @@
+---
+import Base from '../../layouts/Base.astro';
+import SharedPost from '../../components/SharedPost.astro';
+import PageState from '../../components/PageState.astro';
+import { loadPost } from '../../lib/api';
+import { postMeta, respond } from '../../lib/sharePages';
+export const prerender = false;
+const r = await loadPost(Astro.params.id);
+respond(Astro, r);
+const m = r.state === 'ok' ? postMeta('fr', r.data) : null;
+---
+<Base lang="fr" title={m?.title} description={m?.description} ogImage={m?.image} noindex>
+  {r.state === 'ok' ? <SharedPost lang="fr" post={r.data} /> : <PageState lang="fr" state={r.state} />}
+</Base>

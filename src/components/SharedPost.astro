@@ -1,0 +1,106 @@
+---
+// Public page of a Lost / Adoption post, opened from a shared link.
+import AppCta from './AppCta.astro';
+import { cld, type Post } from '../lib/api';
+import { share } from '../i18n/share';
+import { breedName } from '../data/breeds';
+import type { Lang } from '../i18n/ui';
+interface Props { lang: Lang; post: Post }
+const { lang, post } = Astro.props;
+const s = share[lang];
+const lost = post.kind === 'missing';
+const closed = post.status === 'closed';
+const type = s.petTypes[post.petType] ?? post.petType;
+const name = post.petName || type;
+const age = [post.ageYears ? s.years(post.ageYears) : '', post.ageMonths ? s.months(post.ageMonths) : ''].filter(Boolean).join(' ');
+const locale = { fr: 'fr-FR', en: 'en-GB', ar: 'ar-MA' }[lang];
+const day = (d: string) => new Date(d).toLocaleDateString(locale, { day: 'numeric', month: 'long', year: 'numeric' });
+const facts = [
+  age && `🎂 ${age}`,
+  post.gender && `${post.gender === 'male' ? '♂' : '♀'} ${s[post.gender]}`,
+  post.vaccinated && `💉 ${s.vaccinated}`,
+  post.sterilized && `✂️ ${s.sterilized}`,
+  !lost && `💛 ${s.freeAdoption}`,
+].filter(Boolean) as string[];
+const where = [post.place, post.city].filter(Boolean).join(', ');
+const wa = post.phone ? `https://wa.me/${post.phone.replace(/\D/g, '').replace(/^0/, '212')}` : '';
+---
+<section class="post">
+  <div class="container narrow">
+    <div class:list={['gallery', lost ? 'lost' : 'adopt', { closed }]}>
+      {post.photos[0] && (
+        <>
+          <img class="backdrop" src={cld(post.photos[0].url, 'f_auto,q_auto,w_60')} alt="" aria-hidden="true" />
+          <img class="main" src={cld(post.photos[0].url, 'f_auto,q_auto,w_900')} alt={name} />
+        </>
+      )}
+      <span class="badge">{closed ? (lost ? `✅ ${s.found}` : `✅ ${s.adopted}`) : (lost ? `🔴 ${s.lost}` : `💛 ${s.adoption}`)}</span>
+    </div>
+    {post.photos.length > 1 && (
+      <div class="thumbs">
+        {post.photos.map((p, i) => (
+          <button type="button" class:list={{ on: i === 0 }} data-full={cld(p.url, 'f_auto,q_auto,w_900')} data-blur={cld(p.url, 'f_auto,q_auto,w_60')} aria-label={`${i + 1} / ${post.photos.length}`}>
+            <img src={cld(p.url, 'f_auto,q_auto,w_300,h_300,c_fill')} alt="" loading="lazy" />
+          </button>
+        ))}
+      </div>
+    )}
+
+    <h1>{name} <span>· {type}{post.breed ? ` · ${breedName(post.breed, lang)}` : ''}</span></h1>
+    {facts.length > 0 && <div class="facts">{facts.map((f) => <span>{f}</span>)}</div>}
+
+    {(where || post.eventDate) && (
+      <p class="where"><strong>{lost ? s.lastSeen : s.where}</strong> {where}{lost && post.eventDate ? ` · ${day(post.eventDate)}` : ''}</p>
+    )}
+    {post.description && <p class="desc" dir="auto">{post.description}</p>}
+    {post.poster && <p class="poster">{s.postedBy.replace('{name}', post.poster.name.split(' ')[0]).replace('{date}', day(post.createdAt))}</p>}
+
+    {closed ? <p class="closed-note">{s.closedNote}</p> : (
+      <>
+        {lost && post.phone && (
+          <div class="contact">
+            <a class="btn btn-primary" href={`tel:${post.phone}`}>📞 {s.call}</a>
+            <a class="btn btn-ghost" href={wa} target="_blank" rel="noopener">💬 {s.whatsapp}</a>
+          </div>
+        )}
+        <AppCta lang={lang} deepPath={`p/${post.id}`} hint={lost ? s.seenIt : s.wantAdopt} />
+      </>
+    )}
+  </div>
+</section>
+
+<script>
+  // tap a thumbnail to show it large
+  document.querySelectorAll<HTMLButtonElement>('.thumbs button').forEach((b) => b.addEventListener('click', () => {
+    document.querySelector<HTMLImageElement>('.gallery .main')!.src = b.dataset.full!;
+    document.querySelector<HTMLImageElement>('.gallery .backdrop')!.src = b.dataset.blur!;
+    document.querySelectorAll('.thumbs button').forEach((x) => x.classList.toggle('on', x === b));
+  }));
+</script>
+
+<style>
+  .post { padding-block: 24px 64px; }
+  .narrow { max-width: 640px; }
+  .gallery { position: relative; border-radius: var(--radius); overflow: hidden; background: var(--bg-soft); aspect-ratio: 4 / 3; }
+  /* whole photo visible (posters often have text), over a blurred copy of itself */
+  .gallery .backdrop { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(24px) saturate(1.2); transform: scale(1.2); opacity: .55; }
+  .gallery .main { position: relative; width: 100%; height: 100%; object-fit: contain; }
+  .gallery.closed .main { filter: grayscale(.6); }
+  .badge { position: absolute; z-index: 1; top: 14px; inset-inline-start: 14px; padding: 6px 12px; border-radius: 999px; font-weight: 800; font-size: 14px; color: #fff; background: #E0473A; box-shadow: var(--shadow-sm); }
+  .adopt .badge { background: #E6A100; }
+  .closed .badge { background: #1E8A5A; }
+  .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 8px; }
+  .thumbs button { appearance: none; padding: 0; border: 2px solid transparent; border-radius: var(--radius-sm); overflow: hidden; background: none; cursor: pointer; }
+  .thumbs button.on { border-color: var(--coral); }
+  .thumbs img { aspect-ratio: 1; object-fit: cover; width: 100%; }
+  h1 { font-size: clamp(28px, 5vw, 38px); margin-top: 22px; }
+  h1 span { color: var(--muted); font-weight: 600; font-size: .6em; }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .facts span { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: 15px; font-weight: 600; }
+  .where { margin-top: 18px; color: var(--ink-2); }
+  .where strong { color: var(--ink); margin-inline-end: 6px; }
+  .desc { margin-top: 14px; white-space: pre-line; color: var(--ink-2); }
+  .poster { margin-top: 14px; color: var(--muted); font-size: 14px; }
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+  .closed-note { margin-top: 22px; padding: 16px; border-radius: var(--radius-sm); background: #E8F6EF; color: #1E6B47; font-weight: 600; }
+</style>

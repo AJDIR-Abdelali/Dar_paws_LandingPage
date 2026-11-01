@@ -1,0 +1,14 @@
+---
+import Base from '../../../layouts/Base.astro';
+import SharedSitter from '../../../components/SharedSitter.astro';
+import PageState from '../../../components/PageState.astro';
+import { loadSitter } from '../../../lib/api';
+import { sitterMeta, respond } from '../../../lib/sharePages';
+export const prerender = false;
+const r = await loadSitter(Astro.params.id);
+respond(Astro, r);
+const m = r.state === 'ok' ? sitterMeta('ar', r.data.sitter, r.data.total) : null;
+---
+<Base lang="ar" title={m?.title} description={m?.description} ogImage={m?.image} noindex>
+  {r.state === 'ok' ? <SharedSitter lang="ar" {...r.data} /> : <PageState lang="ar" state={r.state} />}
+</Base>

@@ -1,0 +1,86 @@
+---
+// Public page of a sitter profile, opened from a shared link.
+import AppCta from './AppCta.astro';
+import { cld, type Review, type Sitter } from '../lib/api';
+import { share } from '../i18n/share';
+import type { Lang } from '../i18n/ui';
+interface Props { lang: Lang; sitter: Sitter; reviews: Review[]; total: number }
+const { lang, sitter, reviews, total } = Astro.props;
+const s = share[lang];
+const locale = { fr: 'fr-FR', en: 'en-GB', ar: 'ar-MA' }[lang];
+const day = (d: string) => new Date(d).toLocaleDateString(locale, { month: 'long', year: 'numeric' });
+const money = (n: number) => `${n} ${sitter.currency === 'MAD' ? s.mad : sitter.currency}`;
+const stars = (n: number) => '★'.repeat(Math.round(n)) + '☆'.repeat(5 - Math.round(n));
+---
+<section class="sitter">
+  <div class="container narrow">
+    <div class="head">
+      <div class="avatar">
+        {sitter.avatarUrl ? <img src={sitter.avatarUrl.includes('/image/upload/') ? cld(sitter.avatarUrl, 'f_auto,q_auto,w_200,h_200,c_fill') : sitter.avatarUrl} alt="" /> : <span>🐾</span>}
+      </div>
+      <div>
+        <p class="role">{s.sitter}{sitter.city ? ` · ${sitter.city}` : ''}</p>
+        <h1>{sitter.displayName}</h1>
+        <p class="rating">
+          {total > 0 ? <><span class="stars" aria-hidden="true">{stars(sitter.rating)}</span> {sitter.rating.toFixed(1)} · {s.reviews(total)}</> : s.noReviews}
+        </p>
+        {sitter.verified && <span class="verified">✔ {s.verified}</span>}
+      </div>
+    </div>
+
+    {sitter.services.length > 0 && (
+      <>
+        <h2>{s.services}</h2>
+        <ul class="prices">
+          {sitter.services.map((k) => (
+            <li>
+              <span>{s.serviceNames[k] ?? k}</span>
+              <strong>{sitter.prices?.[k] != null ? `${money(sitter.prices[k])} ${s.per[k] ?? ''}` : s.onRequest}</strong>
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+
+    {sitter.bio && (<><h2>{s.about}</h2><p class="bio" dir="auto">{sitter.bio}</p></>)}
+
+    {reviews.length > 0 && (
+      <>
+        <h2>{s.lastReviews}</h2>
+        <ul class="reviews">
+          {reviews.map((r) => (
+            <li>
+              <div class="rv-top"><span class="stars" aria-hidden="true">{stars(r.rating)}</span><span class="rv-who">{r.Owner?.name?.split(' ')[0] ?? ''} · {day(r.createdAt)}</span></div>
+              {r.comment && <p dir="auto">{r.comment}</p>}
+            </li>
+          ))}
+        </ul>
+      </>
+    )}
+
+    <AppCta lang={lang} deepPath={`s/${sitter.id}`} hint={s.bookInApp} />
+  </div>
+</section>
+
+<style>
+  .sitter { padding-block: 32px 64px; }
+  .narrow { max-width: 640px; }
+  .head { display: flex; gap: 18px; align-items: center; }
+  .avatar { flex: none; width: 88px; height: 88px; border-radius: 50%; overflow: hidden; background: var(--coral-50); display: grid; place-items: center; font-size: 38px; }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .role { color: var(--coral); font-weight: 700; font-size: 14px; }
+  h1 { font-size: clamp(28px, 5vw, 38px); margin-top: 4px; }
+  .rating { margin-top: 6px; color: var(--ink-2); font-weight: 600; }
+  .stars { color: #F5A524; letter-spacing: 1px; }
+  .verified { display: inline-block; margin-top: 8px; padding: 4px 10px; border-radius: 999px; background: #E8F6EF; color: #1E6B47; font-weight: 700; font-size: 13px; }
+  h2 { font-size: 20px; letter-spacing: -0.01em; margin: 32px 0 12px; }
+  .prices { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+  .prices li { display: flex; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: var(--radius-sm); background: var(--bg-soft); border: 1px solid var(--line); }
+  .prices strong { white-space: nowrap; }
+  .bio { color: var(--ink-2); white-space: pre-line; }
+  .reviews { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .reviews li { padding: 14px 16px; border-radius: var(--radius-sm); border: 1px solid var(--line); }
+  .rv-top { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .rv-who { color: var(--muted); font-size: 14px; }
+  .reviews p { margin-top: 6px; color: var(--ink-2); }
+</style>

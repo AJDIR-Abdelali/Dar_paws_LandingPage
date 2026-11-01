@@ -1,0 +1,158 @@
+// Copy of pet-care-frontend/src/data/breeds.ts (the app's breed list). Keep both in sync.
+// Breeds offered for each pet type: [value saved by the API (English), French, Arabic].
+// The first entries are the most common in Morocco; "Mixed" and "Other" close each list.
+// Pet type "Other" has no list (the breed field is hidden).
+export type Breed = [en: string, fr: string, ar: string];
+
+const MIXED: Breed = ['Mixed breed', 'Croisé', 'هجين'];
+const OTHER: Breed = ['Other breed', 'Autre race', 'سلالة أخرى'];
+
+export const BREEDS: Record<string, Breed[]> = {
+  Dog: [
+    MIXED,
+    ['Beldi (local dog)', 'Beldi (chien local)', 'كلب بلدي'],
+    ['German Shepherd', 'Berger allemand', 'الراعي الألماني'],
+    ['Belgian Malinois', 'Berger belge malinois', 'مالينوا البلجيكي'],
+    ['Labrador Retriever', 'Labrador', 'لابرادور'],
+    ['Golden Retriever', 'Golden retriever', 'غولدن ريتريفر'],
+    ['Pit Bull', 'Pit-bull', 'بيتبول'],
+    ['American Staffordshire Terrier', 'American Staffordshire terrier', 'أمريكان ستافوردشاير'],
+    ['Rottweiler', 'Rottweiler', 'روت وايلر'],
+    ['Husky', 'Husky sibérien', 'هاسكي'],
+    ['Poodle', 'Caniche', 'بودل'],
+    ['Toy Poodle', 'Caniche toy', 'توي بودل'],
+    ['Chihuahua', 'Chihuahua', 'شيواوا'],
+    ['Yorkshire Terrier', 'Yorkshire', 'يوركشاير'],
+    ['Maltese', 'Bichon maltais', 'مالتيز'],
+    ['Bichon Frise', 'Bichon frisé', 'بيشون فريز'],
+    ['Shih Tzu', 'Shih tzu', 'شيتزو'],
+    ['Pomeranian', 'Spitz nain (Pomeranian)', 'بوميرانيان'],
+    ['French Bulldog', 'Bouledogue français', 'بولدوغ فرنسي'],
+    ['English Bulldog', 'Bulldog anglais', 'بولدوغ إنجليزي'],
+    ['Pug', 'Carlin', 'باغ'],
+    ['Beagle', 'Beagle', 'بيغل'],
+    ['Cocker Spaniel', 'Cocker', 'كوكر سبانيل'],
+    ['Cavalier King Charles', 'Cavalier King Charles', 'كافالير كينغ تشارلز'],
+    ['Jack Russell Terrier', 'Jack Russell', 'جاك راسل'],
+    ['Dachshund', 'Teckel', 'داشهند'],
+    ['Border Collie', 'Border collie', 'بوردر كولي'],
+    ['Australian Shepherd', 'Berger australien', 'الراعي الأسترالي'],
+    ['Doberman', 'Dobermann', 'دوبرمان'],
+    ['Boxer', 'Boxer', 'بوكسر'],
+    ['Cane Corso', 'Cane corso', 'كاني كورسو'],
+    ['Dogo Argentino', 'Dogue argentin', 'دوغو أرجنتينو'],
+    ['Great Dane', 'Dogue allemand', 'الدانماركي الكبير'],
+    ['Kangal', 'Kangal', 'كانغال'],
+    ['Malamute', 'Malamute d’Alaska', 'مالاموت'],
+    ['Samoyed', 'Samoyède', 'ساموييد'],
+    ['Akita', 'Akita', 'أكيتا'],
+    ['Shiba Inu', 'Shiba inu', 'شيبا إينو'],
+    ['Chow Chow', 'Chow-chow', 'تشاو تشاو'],
+    ['Saint Bernard', 'Saint-bernard', 'سان برنار'],
+    ['Bernese Mountain Dog', 'Bouvier bernois', 'كلب الجبال البرنيزي'],
+    ['Dalmatian', 'Dalmatien', 'دلماسي'],
+    ['Aidi (Atlas Shepherd)', 'Aïdi (chien de l’Atlas)', 'عيدي (كلب الأطلس)'],
+    ['Sloughi', 'Sloughi', 'سلوقي'],
+    ['Greyhound', 'Lévrier greyhound', 'غرايهاوند'],
+    OTHER,
+  ],
+  Cat: [
+    MIXED,
+    ['Beldi (local cat)', 'Chat de gouttière (beldi)', 'قط بلدي'],
+    ['Persian', 'Persan', 'شيرازي (فارسي)'],
+    ['Siamese', 'Siamois', 'سيامي'],
+    ['Maine Coon', 'Maine coon', 'ماين كون'],
+    ['British Shorthair', 'British shorthair', 'بريتيش شورت هير'],
+    ['Scottish Fold', 'Scottish fold', 'سكوتش فولد'],
+    ['Ragdoll', 'Ragdoll', 'راغدول'],
+    ['Bengal', 'Bengal', 'بنغالي'],
+    ['Sphynx', 'Sphynx', 'سفينكس'],
+    ['Turkish Angora', 'Angora turc', 'أنغورا تركي'],
+    ['Turkish Van', 'Van turc', 'فان تركي'],
+    ['Russian Blue', 'Bleu russe', 'الأزرق الروسي'],
+    ['Exotic Shorthair', 'Exotic shorthair', 'إكزوتيك شورت هير'],
+    ['Himalayan', 'Himalayen', 'هيمالايا'],
+    ['Abyssinian', 'Abyssin', 'حبشي'],
+    ['Norwegian Forest Cat', 'Chat des forêts norvégiennes', 'قط الغابة النرويجي'],
+    ['Chartreux', 'Chartreux', 'شارتروه'],
+    ['Egyptian Mau', 'Mau égyptien', 'ماو مصري'],
+    OTHER,
+  ],
+  Bird: [
+    ['Canary', 'Canari', 'كناري'],
+    ['Budgerigar', 'Perruche ondulée', 'بادجي'],
+    ['Lovebird', 'Inséparable', 'طيور الحب'],
+    ['Cockatiel', 'Calopsitte', 'كوكتيل'],
+    ['African Grey Parrot', 'Perroquet gris du Gabon', 'الببغاء الرمادي الإفريقي'],
+    ['Amazon Parrot', 'Amazone', 'ببغاء الأمازون'],
+    ['Macaw', 'Ara', 'ببغاء المكاو'],
+    ['Cockatoo', 'Cacatoès', 'كوكاتو'],
+    ['Goldfinch', 'Chardonneret', 'حسون (مقنين)'],
+    ['Zebra Finch', 'Diamant mandarin', 'عصفور الزيبرا'],
+    ['Pigeon', 'Pigeon', 'حمام'],
+    ['Dove', 'Tourterelle', 'يمام'],
+    ['Chicken', 'Poule', 'دجاج'],
+    MIXED,
+    OTHER,
+  ],
+  Fish: [
+    ['Goldfish', 'Poisson rouge', 'سمكة ذهبية'],
+    ['Betta', 'Combattant (Betta)', 'سمكة البيتا (المقاتلة)'],
+    ['Guppy', 'Guppy', 'غوبي'],
+    ['Molly', 'Molly', 'مولي'],
+    ['Platy', 'Platy', 'بلاتي'],
+    ['Neon Tetra', 'Néon', 'نيون تترا'],
+    ['Angelfish', 'Scalaire', 'سمكة الملاك'],
+    ['Discus', 'Discus', 'ديسكس'],
+    ['Koi', 'Carpe koï', 'كوي'],
+    ['Oscar', 'Oscar', 'أوسكار'],
+    ['Cichlid', 'Cichlidé', 'سيكليد'],
+    ['Clownfish', 'Poisson-clown', 'سمكة المهرج'],
+    OTHER,
+  ],
+  Reptile: [
+    ['Tortoise', 'Tortue terrestre', 'سلحفاة برية'],
+    ['Water Turtle', 'Tortue aquatique', 'سلحفاة مائية'],
+    ['Bearded Dragon', 'Pogona', 'التنين الملتحي'],
+    ['Leopard Gecko', 'Gecko léopard', 'الوزغ النمري'],
+    ['Chameleon', 'Caméléon', 'حرباء'],
+    ['Iguana', 'Iguane', 'إغوانا'],
+    ['Corn Snake', 'Serpent des blés', 'ثعبان الذرة'],
+    ['Ball Python', 'Python royal', 'بايثون ملكي'],
+    OTHER,
+  ],
+  Rabbit: [
+    MIXED,
+    ['Dwarf Rabbit', 'Lapin nain', 'أرنب قزم'],
+    ['Lop Rabbit', 'Lapin bélier', 'أرنب ذو الأذن المتدلية'],
+    ['Lionhead', 'Tête de lion', 'رأس الأسد'],
+    ['Angora Rabbit', 'Angora', 'أرنب أنغورا'],
+    ['Rex', 'Rex', 'ريكس'],
+    ['Netherland Dwarf', 'Nain de couleur', 'القزم الهولندي'],
+    ['Giant Rabbit', 'Géant des Flandres', 'أرنب عملاق'],
+    OTHER,
+  ],
+  'Small mammal': [
+    ['Hamster', 'Hamster', 'هامستر'],
+    ['Guinea Pig', 'Cochon d’Inde', 'خنزير غينيا'],
+    ['Gerbil', 'Gerbille', 'جربوع'],
+    ['Mouse', 'Souris', 'فأر'],
+    ['Rat', 'Rat', 'جرذ'],
+    ['Chinchilla', 'Chinchilla', 'شنشيلة'],
+    ['Ferret', 'Furet', 'نمس (فيرت)'],
+    ['Hedgehog', 'Hérisson', 'قنفذ'],
+    OTHER,
+  ],
+};
+
+const BY_VALUE = new Map<string, Breed>(Object.values(BREEDS).flat().map((b) => [b[0], b]));
+
+export const breedsFor = (type?: string | null): Breed[] => (type ? BREEDS[type] ?? [] : []);
+
+/** Saved value → label in the given language; old free-text breeds are shown as typed. */
+export const breedName = (value: string | null | undefined, lang: string) => {
+  if (!value) return '';
+  const b = BY_VALUE.get(value);
+  if (!b) return value;
+  return lang === 'fr' ? b[1] : lang === 'ar' ? b[2] : b[0];
+};
