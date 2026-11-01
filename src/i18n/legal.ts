@@ -3,7 +3,7 @@
 // localized delete-account link.
 import type { Lang } from './ui';
 
-export const UPDATED = { fr: '1 novembre 2026', en: '1 November 2026', ar: '1 نونبر 2026' } as const;
+export const UPDATED = { fr: '2 novembre 2026', en: '2 November 2026', ar: '2 نونبر 2026' } as const;
 
 const fr = {
   privacy: {
@@ -31,7 +31,7 @@ const fr = {
 
 <h2>Avec qui nous les partageons</h2>
 <ul>
-  <li><strong>Les autres utilisateurs DarPaws :</strong> lors d’une réservation, chacun voit le nom de l’autre et les détails de la demande. Les profils de gardien, les avis et les annonces de la communauté sont visibles par tous les utilisateurs.</li>
+  <li><strong>Les autres utilisateurs DarPaws :</strong> lors d’une réservation, chacun voit le nom de l’autre et les détails de la demande. Les profils de gardien, les avis et les annonces de la communauté sont visibles par tous les utilisateurs. Une annonce ou un profil de gardien peut aussi être ouvert sur notre site par toute personne qui a son lien (par exemple quand vous le partagez) ; ces pages ne sont pas référencées par les moteurs de recherche.</li>
   <li><strong>Les prestataires qui font tourner l’application :</strong> Render (serveur, Francfort, Allemagne), Neon (base de données, Francfort), Cloudinary (stockage des photos), Google (connexion Google) et Firebase Cloud Messaging (notifications). Les fonds de carte viennent d’OpenStreetMap, qui voit votre adresse IP lors de leur chargement. Si vous contactez quelqu’un par WhatsApp, la politique de WhatsApp s’applique.</li>
 </ul>
 
@@ -102,7 +102,7 @@ const en: Legal = {
 
 <h2>Who we share it with</h2>
 <ul>
-  <li><strong>Other DarPaws users:</strong> when you book or are booked, each side sees the other’s name and the booking details. Sitter profiles, reviews and community posts are visible to all users.</li>
+  <li><strong>Other DarPaws users:</strong> when you book or are booked, each side sees the other’s name and the booking details. Sitter profiles, reviews and community posts are visible to all users. A post or sitter profile can also be opened on our website by anyone who has its link (for example when you share it); these pages are kept out of search engines.</li>
   <li><strong>Service providers that run the app for us:</strong> Render (server, Frankfurt, Germany), Neon (database, Frankfurt), Cloudinary (photo storage), Google (Google Sign-In) and Firebase Cloud Messaging (notifications). Map tiles are loaded from OpenStreetMap, which sees your IP address when they load. If you contact someone on WhatsApp, WhatsApp’s policy applies.</li>
 </ul>
 
@@ -171,7 +171,7 @@ const ar: Legal = {
 
 <h2>مع من نشاركها</h2>
 <ul>
-  <li><strong>مستخدمو DarPaws الآخرون:</strong> عند الحجز، يرى كل طرف اسم الآخر وتفاصيل الطلب. ملفات الحراس والتقييمات وإعلانات المجتمع مرئية لجميع المستخدمين.</li>
+  <li><strong>مستخدمو DarPaws الآخرون:</strong> عند الحجز، يرى كل طرف اسم الآخر وتفاصيل الطلب. ملفات الحراس والتقييمات وإعلانات المجتمع مرئية لجميع المستخدمين. يمكن أيضًا فتح الإعلان أو ملف الحارس على موقعنا من طرف أي شخص يملك رابطه (مثلًا عند مشاركته)، وهذه الصفحات غير مفهرسة في محركات البحث.</li>
   <li><strong>مزوّدو الخدمات الذين يشغّلون التطبيق:</strong> Render (الخادم، فرانكفورت، ألمانيا)، وNeon (قاعدة البيانات، فرانكفورت)، وCloudinary (تخزين الصور)، وGoogle (تسجيل الدخول بـGoogle)، وFirebase Cloud Messaging (الإشعارات). تُحمَّل الخرائط من OpenStreetMap الذي يرى عنوان IP الخاص بك عند تحميلها. إذا تواصلت مع شخص عبر واتساب، تُطبَّق سياسة واتساب.</li>
 </ul>
 
