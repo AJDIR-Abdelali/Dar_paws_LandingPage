@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
 import PlayBadge from './PlayBadge.astro';
-import { API_URL, SUPPORT_EMAIL, t, base, type Lang } from '../i18n/ui';
+import { SUPPORT_EMAIL, t, base, type Lang } from '../i18n/ui';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const s = t(lang);
@@ -24,8 +24,8 @@ const home = base(lang) || '/';
     </div>
     <div>
       <h4>{s.footer.legal}</h4>
-      <a href={`${API_URL}/privacy`}>{s.footer.privacy}</a>
-      <a href={`${API_URL}/delete-account`}>{s.footer.deleteAccount}</a>
+      <a href={`${base(lang)}/privacy/`}>{s.footer.privacy}</a>
+      <a href={`${base(lang)}/delete-account/`}>{s.footer.deleteAccount}</a>
       <a href={`mailto:${SUPPORT_EMAIL}`}>{s.footer.contact}</a>
     </div>
   </div>

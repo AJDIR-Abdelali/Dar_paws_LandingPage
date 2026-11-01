@@ -1,0 +1,9 @@
+---
+import Base from '../../layouts/Base.astro';
+import DeleteAccount from '../../components/DeleteAccount.astro';
+import { legal } from '../../i18n/legal';
+const s = legal.ar.del;
+---
+<Base lang="ar" title={`${s.title} — DarPaws`} description={s.description}>
+  <DeleteAccount lang="ar" />
+</Base>

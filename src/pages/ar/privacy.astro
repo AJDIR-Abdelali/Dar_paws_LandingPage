@@ -1,0 +1,9 @@
+---
+import Base from '../../layouts/Base.astro';
+import Privacy from '../../components/Privacy.astro';
+import { legal } from '../../i18n/legal';
+const s = legal.ar.privacy;
+---
+<Base lang="ar" title={`${s.title} — DarPaws`} description={s.description}>
+  <Privacy lang="ar" />
+</Base>

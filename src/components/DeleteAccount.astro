@@ -1,0 +1,79 @@
+---
+import { API_URL, base, type Lang } from '../i18n/ui';
+import { legal } from '../i18n/legal';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const d = legal[lang].del;
+const msgs = { deleting: d.deleting, wrong: d.wrong, failed: d.failed, done: d.done };
+---
+<section class="section legal">
+  <div class="container narrow">
+    <h1 class="h2">{d.title}</h1>
+    <p class="lead">{d.intro}</p>
+    <p class="quick" set:html={d.quick} />
+
+    <h2>{d.emailTitle}</h2>
+    <form id="del" data-api={API_URL} data-msgs={JSON.stringify(msgs)}>
+      <label>{d.email} <input type="email" name="email" required autocomplete="username" /></label>
+      <label>{d.password} <input type="password" name="password" required autocomplete="current-password" /></label>
+      <label class="check"><input type="checkbox" required /> <span>{d.confirm}</span></label>
+      <button type="submit" class="btn">{d.submit}</button>
+      <p id="msg" role="status"></p>
+    </form>
+
+    <h2>{d.googleTitle}</h2>
+    <p class="google" set:html={d.google} />
+
+    <p class="back"><a href={`${base(lang)}/privacy/`}>{d.privacyLink}</a></p>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('del') as HTMLFormElement;
+  const msg = document.getElementById('msg')!;
+  const m = JSON.parse(form.dataset.msgs!);
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button')!;
+    const data = new FormData(form);
+    msg.className = ''; msg.textContent = m.deleting; btn.disabled = true;
+    try {
+      const login = await fetch(`${form.dataset.api}/api/users/login`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: data.get('email'), password: data.get('password') }),
+      });
+      const body = await login.json().catch(() => ({}));
+      if (!login.ok || !body.token) throw new Error(m.wrong);
+      const del = await fetch(`${form.dataset.api}/api/users/me`, { method: 'DELETE', headers: { Authorization: `Bearer ${body.token}` } });
+      if (!del.ok) throw new Error(m.failed);
+      msg.className = 'ok'; msg.textContent = m.done;
+      form.reset();
+    } catch (err) {
+      msg.className = 'err'; msg.textContent = err instanceof TypeError ? m.failed : (err as Error).message;
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
+
+<style>
+  .legal { padding-block: clamp(110px, 12vw, 150px) 80px; }
+  .narrow { max-width: 640px; }
+  .quick { margin-top: 16px; color: var(--ink-2); }
+  h2 { font-size: 22px; letter-spacing: -0.01em; margin: 40px 0 14px; }
+  form { background: var(--bg-soft); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: grid; gap: 16px; }
+  label { display: grid; gap: 6px; font-weight: 600; font-size: 15px; }
+  label.check { display: flex; gap: 10px; align-items: flex-start; font-weight: 500; color: var(--ink-2); }
+  label.check input { margin-top: 5px; accent-color: var(--coral); }
+  input[type=email], input[type=password] { font: inherit; padding: 12px 14px; border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
+  input:focus-visible { outline: 2px solid var(--coral); outline-offset: 1px; }
+  .btn { background: #C24E43; color: #fff; border: 0; cursor: pointer; font-family: inherit; }
+  .btn:hover { background: #A8413A; }
+  .btn:disabled { opacity: .6; cursor: default; }
+  #msg { min-height: 1.6em; font-weight: 600; }
+  #msg.ok { color: #1E8A5A; }
+  #msg.err { color: #C24E43; }
+  .google { color: var(--ink-2); }
+  .google :global(a), .back a { color: var(--coral); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .back { margin-top: 40px; }
+</style>
