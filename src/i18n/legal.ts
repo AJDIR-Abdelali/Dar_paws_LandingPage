@@ -51,7 +51,7 @@ const fr = {
 <p>Si nous modifions cette politique, nous mettons à jour la date en haut de cette page.</p>
 
 <h2>Contact</h2>
-<p>Questions ou demandes : <a href="mailto:abdelaliajdir@gmail.com">abdelaliajdir@gmail.com</a></p>`,
+<p>Questions ou demandes : <a href="mailto:darpaws2026@gmail.com">darpaws2026@gmail.com</a></p>`,
     delLink: 'Supprimer mon compte',
   },
   del: {
@@ -65,7 +65,7 @@ const fr = {
     confirm: 'Je comprends que mon compte et mes données seront supprimés définitivement',
     submit: 'Supprimer mon compte',
     googleTitle: 'Compte créé avec Google',
-    google: 'Écrivez à <a href="mailto:abdelaliajdir@gmail.com?subject=Supprimer%20mon%20compte%20DarPaws">abdelaliajdir@gmail.com</a> depuis l’adresse Google utilisée dans DarPaws, avec l’objet « Supprimer mon compte DarPaws ». Nous supprimons le compte et toutes ses données sous 7 jours et vous confirmons par e-mail.',
+    google: 'Écrivez à <a href="mailto:darpaws2026@gmail.com?subject=Supprimer%20mon%20compte%20DarPaws">darpaws2026@gmail.com</a> depuis l’adresse Google utilisée dans DarPaws, avec l’objet « Supprimer mon compte DarPaws ». Nous supprimons le compte et toutes ses données sous 7 jours et vous confirmons par e-mail.',
     deleting: 'Suppression…',
     wrong: 'E-mail ou mot de passe incorrect.',
     failed: 'Une erreur est survenue. Réessayez ou écrivez-nous.',
@@ -122,7 +122,7 @@ const en: Legal = {
 <p>If we change this policy, we will update the date at the top of this page.</p>
 
 <h2>Contact</h2>
-<p>Questions or requests: <a href="mailto:abdelaliajdir@gmail.com">abdelaliajdir@gmail.com</a></p>`,
+<p>Questions or requests: <a href="mailto:darpaws2026@gmail.com">darpaws2026@gmail.com</a></p>`,
     delLink: 'Delete my account',
   },
   del: {
@@ -136,7 +136,7 @@ const en: Legal = {
     confirm: 'I understand my account and data will be permanently deleted',
     submit: 'Delete my account',
     googleTitle: 'Signed up with Google',
-    google: 'Email <a href="mailto:abdelaliajdir@gmail.com?subject=Delete%20my%20DarPaws%20account">abdelaliajdir@gmail.com</a> from the Google address you use in DarPaws, with the subject “Delete my DarPaws account”. We delete the account and all its data within 7 days and reply to confirm.',
+    google: 'Email <a href="mailto:darpaws2026@gmail.com?subject=Delete%20my%20DarPaws%20account">darpaws2026@gmail.com</a> from the Google address you use in DarPaws, with the subject “Delete my DarPaws account”. We delete the account and all its data within 7 days and reply to confirm.',
     deleting: 'Deleting…',
     wrong: 'Wrong email or password.',
     failed: 'Something went wrong. Please try again or email us.',
@@ -191,7 +191,7 @@ const ar: Legal = {
 <p>إذا عدّلنا هذه السياسة، نحدّث التاريخ في أعلى هذه الصفحة.</p>
 
 <h2>التواصل</h2>
-<p>للأسئلة أو الطلبات: <a href="mailto:abdelaliajdir@gmail.com">abdelaliajdir@gmail.com</a></p>`,
+<p>للأسئلة أو الطلبات: <a href="mailto:darpaws2026@gmail.com">darpaws2026@gmail.com</a></p>`,
     delLink: 'حذف حسابي',
   },
   del: {
@@ -205,7 +205,7 @@ const ar: Legal = {
     confirm: 'أفهم أن حسابي وبياناتي ستُحذف نهائيًا',
     submit: 'حذف حسابي',
     googleTitle: 'حساب أُنشئ بـGoogle',
-    google: 'راسلنا على <a href="mailto:abdelaliajdir@gmail.com?subject=Delete%20my%20DarPaws%20account">abdelaliajdir@gmail.com</a> من عنوان Google الذي تستعمله في DarPaws، بالموضوع «حذف حسابي في DarPaws». نحذف الحساب وجميع بياناته خلال 7 أيام ونؤكد لك بالبريد.',
+    google: 'راسلنا على <a href="mailto:darpaws2026@gmail.com?subject=Delete%20my%20DarPaws%20account">darpaws2026@gmail.com</a> من عنوان Google الذي تستعمله في DarPaws، بالموضوع «حذف حسابي في DarPaws». نحذف الحساب وجميع بياناته خلال 7 أيام ونؤكد لك بالبريد.',
     deleting: 'جارٍ الحذف…',
     wrong: 'البريد الإلكتروني أو كلمة المرور غير صحيحة.',
     failed: 'حدث خطأ. حاول مرة أخرى أو راسلنا.',

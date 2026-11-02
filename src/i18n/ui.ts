@@ -1,6 +1,6 @@
 export const PLAY_URL = 'https://play.google.com/store/apps/details?id=ma.darpaws.app';
 export const API_URL = 'https://darpaws-api.onrender.com';
-export const SUPPORT_EMAIL = 'abdelaliajdir@gmail.com';
+export const SUPPORT_EMAIL = 'darpaws2026@gmail.com';
 
 export type Lang = 'fr' | 'en' | 'ar';
 export const LANGS: Lang[] = ['fr', 'en', 'ar'];
