@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import logo from '../assets/logo.png';
 import PlayBadge from './PlayBadge.astro';
 import { SUPPORT_EMAIL, t, base, type Lang } from '../i18n/ui';
+import { OPERATOR } from '../i18n/terms';
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const s = t(lang);
@@ -25,11 +26,12 @@ const home = base(lang) || '/';
     <div>
       <h4>{s.footer.legal}</h4>
       <a href={`${base(lang)}/privacy/`}>{s.footer.privacy}</a>
+      <a href={`${base(lang)}/terms/`}>{s.footer.terms}</a>
       <a href={`${base(lang)}/delete-account/`}>{s.footer.deleteAccount}</a>
       <a href={`mailto:${SUPPORT_EMAIL}`}>{s.footer.contact}</a>
     </div>
   </div>
-  <div class="container bottom">© {new Date().getFullYear()} DarPaws. {s.footer.rights}</div>
+  <div class="container bottom">© {new Date().getFullYear()} DarPaws · {OPERATOR}. {s.footer.rights}</div>
 </footer>
 
 <style>

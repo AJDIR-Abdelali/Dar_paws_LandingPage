@@ -3,7 +3,7 @@
 // localized delete-account link.
 import type { Lang } from './ui';
 
-export const UPDATED = { fr: '2 novembre 2026', en: '2 November 2026', ar: '2 نونبر 2026' } as const;
+export const UPDATED = { fr: '7 novembre 2026', en: '7 November 2026', ar: '7 نونبر 2026' } as const;
 
 const fr = {
   privacy: {
@@ -11,7 +11,7 @@ const fr = {
     description: 'Quelles données DarPaws collecte, pourquoi, avec qui elles sont partagées et comment les supprimer.',
     updated: 'Dernière mise à jour',
     body: `
-<p>DarPaws (« nous », « l’application ») aide les propriétaires d’animaux à suivre la santé de leurs compagnons, à trouver un gardien près de chez eux et à publier des annonces d’animaux perdus ou à adopter. Cette page explique quelles données l’application collecte, pourquoi, et comment les supprimer.</p>
+<p>DarPaws (« nous », « l’application ») aide les propriétaires d’animaux à suivre la santé de leurs compagnons, à trouver un gardien près de chez eux et à publier des annonces d’animaux perdus ou à adopter. Cette page explique quelles données l’application collecte, pourquoi, et comment les supprimer. DarPaws est exploité par AJDIR Abdelali.</p>
 
 <h2>Les données que nous collectons</h2>
 <ul>
@@ -44,8 +44,8 @@ const fr = {
 <h2>Conservation et suppression</h2>
 <p>Nous conservons vos données tant que votre compte existe. Vous pouvez supprimer votre compte à tout moment dans l’application (<strong>Profil → Supprimer le compte</strong>) ou sur la page {del}. La suppression efface définitivement votre profil, vos animaux, leur suivi de santé, vos réservations, avis, profil de gardien, annonces, signalements, blocages et jetons de notification.</p>
 
-<h2>Enfants</h2>
-<p>DarPaws ne s’adresse pas aux enfants de moins de 13 ans et nous ne collectons pas sciemment leurs données.</p>
+<h2>Âge minimum</h2>
+<p>DarPaws est réservé aux personnes de 18 ans ou plus, et nous ne collectons pas sciemment les données de personnes plus jeunes.</p>
 
 <h2>Modifications</h2>
 <p>Si nous modifions cette politique, nous mettons à jour la date en haut de cette page.</p>
@@ -82,7 +82,7 @@ const en: Legal = {
     description: 'What data DarPaws collects, why, who it is shared with and how to delete it.',
     updated: 'Last updated',
     body: `
-<p>DarPaws (“we”, “the app”) helps pet owners keep track of their pets’ health, find a pet sitter nearby and post lost or adoptable pets. This page explains what data the app collects, why, and how you can delete it.</p>
+<p>DarPaws (“we”, “the app”) helps pet owners keep track of their pets’ health, find a pet sitter nearby and post lost or adoptable pets. This page explains what data the app collects, why, and how you can delete it. DarPaws is operated by AJDIR Abdelali.</p>
 
 <h2>Data we collect</h2>
 <ul>
@@ -115,8 +115,8 @@ const en: Legal = {
 <h2>Keeping and deleting your data</h2>
 <p>We keep your data while your account exists. You can delete your account at any time in the app (<strong>Profile → Delete account</strong>) or on the {del} page. Deleting your account permanently removes your profile, pets, health records, bookings, reviews, sitter profile, posts, reports, blocks and notification tokens.</p>
 
-<h2>Children</h2>
-<p>DarPaws is not directed at children under 13, and we do not knowingly collect their data.</p>
+<h2>Minimum age</h2>
+<p>DarPaws is only for people aged 18 or over, and we do not knowingly collect data from anyone younger.</p>
 
 <h2>Changes</h2>
 <p>If we change this policy, we will update the date at the top of this page.</p>
@@ -151,7 +151,7 @@ const ar: Legal = {
     description: 'ما هي البيانات التي يجمعها DarPaws، ولماذا، ومع من تتم مشاركتها، وكيف تحذفها.',
     updated: 'آخر تحديث',
     body: `
-<p>يساعد DarPaws («نحن»، «التطبيق») أصحاب الحيوانات على متابعة صحة حيواناتهم، وإيجاد حارس قريب منهم، ونشر إعلانات الحيوانات الضائعة أو المعروضة للتبني. توضح هذه الصفحة البيانات التي يجمعها التطبيق، ولماذا، وكيف يمكنك حذفها.</p>
+<p>يساعد DarPaws («نحن»، «التطبيق») أصحاب الحيوانات على متابعة صحة حيواناتهم، وإيجاد حارس قريب منهم، ونشر إعلانات الحيوانات الضائعة أو المعروضة للتبني. توضح هذه الصفحة البيانات التي يجمعها التطبيق، ولماذا، وكيف يمكنك حذفها. مُشغّل DarPaws: AJDIR Abdelali.</p>
 
 <h2>البيانات التي نجمعها</h2>
 <ul>
@@ -184,8 +184,8 @@ const ar: Legal = {
 <h2>الاحتفاظ بالبيانات وحذفها</h2>
 <p>نحتفظ ببياناتك ما دام حسابك موجودًا. يمكنك حذف حسابك في أي وقت من التطبيق (<strong>الملف ← حذف الحساب</strong>) أو من صفحة {del}. يحذف ذلك نهائيًا ملفك وحيواناتك وسجلها الصحي وحجوزاتك وتقييماتك وملف الحارس وإعلاناتك وبلاغاتك وقائمة الحظر ورموز الإشعارات.</p>
 
-<h2>الأطفال</h2>
-<p>DarPaws غير موجّه للأطفال دون 13 سنة، ولا نجمع بياناتهم عن قصد.</p>
+<h2>السن الأدنى</h2>
+<p>DarPaws مخصص للأشخاص البالغين 18 سنة فما فوق، ولا نجمع عن قصد بيانات من هم أصغر سنًا.</p>
 
 <h2>التعديلات</h2>
 <p>إذا عدّلنا هذه السياسة، نحدّث التاريخ في أعلى هذه الصفحة.</p>

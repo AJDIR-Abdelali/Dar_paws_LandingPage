@@ -1,0 +1,9 @@
+---
+import Base from '../../layouts/Base.astro';
+import Terms from '../../components/Terms.astro';
+import { terms } from '../../i18n/terms';
+const s = terms.en;
+---
+<Base lang="en" title={`${s.title} — DarPaws`} description={s.description}>
+  <Terms lang="en" />
+</Base>

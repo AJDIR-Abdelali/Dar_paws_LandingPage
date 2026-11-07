@@ -1,0 +1,28 @@
+---
+import { base, type Lang } from '../i18n/ui';
+import { legal, UPDATED } from '../i18n/legal';
+import { terms } from '../i18n/terms';
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const p = terms[lang];
+const body = p.body.replace('{privacy}', `<a href="${base(lang)}/privacy/">${legal[lang].privacy.title}</a>`);
+---
+<section class="section legal">
+  <div class="container narrow">
+    <h1 class="h2">{p.title}</h1>
+    <p class="updated">{p.updated}{lang === 'fr' ? ' :' : ':'} {UPDATED[lang]}</p>
+    <div class="prose" set:html={body} />
+  </div>
+</section>
+
+<style>
+  .legal { padding-block: clamp(110px, 12vw, 150px) 80px; }
+  .narrow { max-width: 760px; }
+  .updated { color: var(--muted); font-size: 15px; margin: 14px 0 32px; }
+  .prose :global(h2) { font-size: 22px; letter-spacing: -0.01em; margin: 36px 0 10px; }
+  .prose :global(p), .prose :global(li) { color: var(--ink-2); }
+  .prose :global(p + p) { margin-top: 12px; }
+  .prose :global(ul) { padding-inline-start: 22px; margin: 10px 0 14px; display: grid; gap: 8px; }
+  .prose :global(strong) { color: var(--ink); }
+  .prose :global(a) { color: var(--coral); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+</style>
