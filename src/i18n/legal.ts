@@ -3,7 +3,7 @@
 // localized delete-account link.
 import type { Lang } from './ui';
 
-export const UPDATED = { fr: '7 novembre 2026', en: '7 November 2026', ar: '7 نونبر 2026' } as const;
+export const UPDATED = { fr: '11 novembre 2026', en: '11 November 2026', ar: '11 نونبر 2026' } as const;
 
 const fr = {
   privacy: {
@@ -15,7 +15,7 @@ const fr = {
 
 <h2>Les données que nous collectons</h2>
 <ul>
-  <li><strong>Compte :</strong> nom, adresse e-mail et mot de passe (stocké uniquement sous forme chiffrée). Si vous vous connectez avec Google, nous recevons votre nom, votre e-mail et votre photo de profil.</li>
+  <li><strong>Compte :</strong> nom, adresse e-mail, numéro de téléphone si vous le donnez, et mot de passe (stocké uniquement sous forme chiffrée). Si vous vous connectez avec Google, nous recevons votre nom, votre e-mail et votre photo de profil. Si vous vous connectez avec Apple (iPhone), nous recevons un identifiant Apple, votre e-mail (ou une adresse relais d’Apple si vous choisissez de masquer le vôtre) et votre nom si vous le partagez.</li>
   <li><strong>Vos animaux :</strong> nom, espèce, race, âge, photo, besoins particuliers, vaccins et visites chez le vétérinaire.</li>
   <li><strong>Réservations et avis :</strong> les demandes envoyées ou reçues (dates, services, messages) et les notes et avis laissés.</li>
   <li><strong>Profil de gardien</strong> (seulement si vous devenez gardien) : nom affiché, photo, présentation, services, tarifs, ville et position choisie, visible par les autres utilisateurs sur la carte. Votre numéro de téléphone n’est communiqué au propriétaire qu’après acceptation d’une réservation.</li>
@@ -32,7 +32,7 @@ const fr = {
 <h2>Avec qui nous les partageons</h2>
 <ul>
   <li><strong>Les autres utilisateurs DarPaws :</strong> lors d’une réservation, chacun voit le nom de l’autre et les détails de la demande. Les profils de gardien, les avis et les annonces de la communauté sont visibles par tous les utilisateurs. Une annonce ou un profil de gardien peut aussi être ouvert sur notre site par toute personne qui a son lien (par exemple quand vous le partagez) ; ces pages ne sont pas référencées par les moteurs de recherche.</li>
-  <li><strong>Les prestataires qui font tourner l’application :</strong> Render (serveur, Francfort, Allemagne), Neon (base de données, Francfort), Cloudinary (stockage des photos), Google (connexion Google) et Firebase Cloud Messaging (notifications). Les fonds de carte viennent d’OpenStreetMap, qui voit votre adresse IP lors de leur chargement. Si vous contactez quelqu’un par WhatsApp, la politique de WhatsApp s’applique.</li>
+  <li><strong>Les prestataires qui font tourner l’application :</strong> Render (serveur, Francfort, Allemagne), Neon (base de données, Francfort), Cloudinary (stockage des photos), Google (connexion Google), Apple (connexion avec Apple) et Firebase Cloud Messaging (notifications). Les fonds de carte viennent d’OpenStreetMap, qui voit votre adresse IP lors de leur chargement. Si vous contactez quelqu’un par WhatsApp, la politique de WhatsApp s’applique.</li>
 </ul>
 
 <h2>Modération</h2>
@@ -86,7 +86,7 @@ const en: Legal = {
 
 <h2>Data we collect</h2>
 <ul>
-  <li><strong>Account:</strong> your name, email address and password (stored only as a secure hash). If you sign in with Google, we receive your name, email address and profile picture.</li>
+  <li><strong>Account:</strong> your name, email address, phone number if you give it, and password (stored only as a secure hash). If you sign in with Google, we receive your name, email address and profile picture. If you sign in with Apple (iPhone), we receive an Apple user ID, your email address (or an Apple relay address if you choose to hide yours) and your name if you share it.</li>
   <li><strong>Your pets:</strong> name, type, breed, age, photo, special needs, vaccinations and vet visits.</li>
   <li><strong>Bookings and reviews:</strong> requests you send or receive (dates, services, messages) and the ratings and reviews you leave.</li>
   <li><strong>Sitter profile</strong> (only if you become a sitter): display name, photo, bio, services, rates, city and the location you set, which other users see on the map. Your phone number is shared with an owner only after you accept their booking.</li>
@@ -103,7 +103,7 @@ const en: Legal = {
 <h2>Who we share it with</h2>
 <ul>
   <li><strong>Other DarPaws users:</strong> when you book or are booked, each side sees the other’s name and the booking details. Sitter profiles, reviews and community posts are visible to all users. A post or sitter profile can also be opened on our website by anyone who has its link (for example when you share it); these pages are kept out of search engines.</li>
-  <li><strong>Service providers that run the app for us:</strong> Render (server, Frankfurt, Germany), Neon (database, Frankfurt), Cloudinary (photo storage), Google (Google Sign-In) and Firebase Cloud Messaging (notifications). Map tiles are loaded from OpenStreetMap, which sees your IP address when they load. If you contact someone on WhatsApp, WhatsApp’s policy applies.</li>
+  <li><strong>Service providers that run the app for us:</strong> Render (server, Frankfurt, Germany), Neon (database, Frankfurt), Cloudinary (photo storage), Google (Google Sign-In), Apple (Sign in with Apple) and Firebase Cloud Messaging (notifications). Map tiles are loaded from OpenStreetMap, which sees your IP address when they load. If you contact someone on WhatsApp, WhatsApp’s policy applies.</li>
 </ul>
 
 <h2>Moderation</h2>
@@ -155,7 +155,7 @@ const ar: Legal = {
 
 <h2>البيانات التي نجمعها</h2>
 <ul>
-  <li><strong>الحساب:</strong> الاسم والبريد الإلكتروني وكلمة المرور (تُحفظ مشفّرة فقط). إذا سجّلت الدخول بحساب Google، نتلقى اسمك وبريدك الإلكتروني وصورة ملفك.</li>
+  <li><strong>الحساب:</strong> الاسم والبريد الإلكتروني ورقم الهاتف إذا أدخلته وكلمة المرور (تُحفظ مشفّرة فقط). إذا سجّلت الدخول بحساب Google، نتلقى اسمك وبريدك الإلكتروني وصورة ملفك. إذا سجّلت الدخول باستخدام Apple (iPhone)، نتلقى معرّف Apple وبريدك الإلكتروني (أو عنوان وسيط من Apple إذا اخترت إخفاء بريدك) واسمك إذا شاركته.</li>
   <li><strong>حيواناتك:</strong> الاسم والنوع والسلالة والعمر والصورة والاحتياجات الخاصة واللقاحات وزيارات البيطري.</li>
   <li><strong>الحجوزات والتقييمات:</strong> الطلبات التي ترسلها أو تستقبلها (التواريخ والخدمات والرسائل) والتقييمات والآراء التي تتركها.</li>
   <li><strong>ملف الحارس</strong> (فقط إذا أصبحت حارسًا): الاسم المعروض والصورة والنبذة والخدمات والأسعار والمدينة والموقع الذي تختاره، ويظهر للمستخدمين على الخريطة. لا يُشارَك رقم هاتفك مع صاحب الحيوان إلا بعد قبول الحجز.</li>
@@ -172,7 +172,7 @@ const ar: Legal = {
 <h2>مع من نشاركها</h2>
 <ul>
   <li><strong>مستخدمو DarPaws الآخرون:</strong> عند الحجز، يرى كل طرف اسم الآخر وتفاصيل الطلب. ملفات الحراس والتقييمات وإعلانات المجتمع مرئية لجميع المستخدمين. يمكن أيضًا فتح الإعلان أو ملف الحارس على موقعنا من طرف أي شخص يملك رابطه (مثلًا عند مشاركته)، وهذه الصفحات غير مفهرسة في محركات البحث.</li>
-  <li><strong>مزوّدو الخدمات الذين يشغّلون التطبيق:</strong> Render (الخادم، فرانكفورت، ألمانيا)، وNeon (قاعدة البيانات، فرانكفورت)، وCloudinary (تخزين الصور)، وGoogle (تسجيل الدخول بـGoogle)، وFirebase Cloud Messaging (الإشعارات). تُحمَّل الخرائط من OpenStreetMap الذي يرى عنوان IP الخاص بك عند تحميلها. إذا تواصلت مع شخص عبر واتساب، تُطبَّق سياسة واتساب.</li>
+  <li><strong>مزوّدو الخدمات الذين يشغّلون التطبيق:</strong> Render (الخادم، فرانكفورت، ألمانيا)، وNeon (قاعدة البيانات، فرانكفورت)، وCloudinary (تخزين الصور)، وGoogle (تسجيل الدخول بـGoogle)، وApple (تسجيل الدخول باستخدام Apple)، وFirebase Cloud Messaging (الإشعارات). تُحمَّل الخرائط من OpenStreetMap الذي يرى عنوان IP الخاص بك عند تحميلها. إذا تواصلت مع شخص عبر واتساب، تُطبَّق سياسة واتساب.</li>
 </ul>
 
 <h2>الإشراف</h2>
